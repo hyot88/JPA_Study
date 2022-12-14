@@ -11,13 +11,13 @@ spring:
     username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
     password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
   jpa:
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
-        hbm2ddl:
-          auto: create
         show_sql: true  # 하이버네이트가 실행한 SQL을 출력한다.
         format_sql: true # 하이버네이트가 실행한 SQL을 출력할 때 보기 쉽게 정렬한다.
         use_sql_comments: true # 쿼리를 출력할 때 주석도 함께 출력한다.
         id:
           new_generator_mappings: true # JPA 표준에 맞춘 새로운 키 생성 전략을 사용한다.
-        dialect: org.hibernate.dialect.H2Dialect
+      dialect: org.hibernate.dialect.H2Dialect

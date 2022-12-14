@@ -1,6 +1,6 @@
 package jpabook.start.chap2;
 
-import jpabook.start.Member;
+import jpabook.start.Member_Temp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,20 +38,20 @@ public class JpaTest {
         String id = "id1";
         String userName = "지한";
         int age = 2;
-        Member member = new Member();
-        member.setId(id);
-        member.setUsername(userName);
-        member.setAge(age);
+        Member_Temp memberTemp = new Member_Temp();
+        memberTemp.setId(id);
+        memberTemp.setUsername(userName);
+        memberTemp.setAge(age);
 
         // 등록
-        testEntityManager.persist(member);
+        testEntityManager.persist(memberTemp);
 
         // 수정
         age = 20;
-        member.setAge(age);
+        memberTemp.setAge(age);
 
         // 한 건 조회
-        Member findMember = testEntityManager.find(Member.class, id);
+        Member_Temp findMemberTemp = testEntityManager.find(Member_Temp.class, id);
 
         /**
          * 하나 이상의 회원 목록을 조회
@@ -65,19 +64,18 @@ public class JpaTest {
         // testEntityManager는 createQuery() 가 없어서 getEntityManager() 로 EntityManager를 가져온다.
         EntityManager entityManager = testEntityManager.getEntityManager();
         // 해당 쿼리가 JPQL이다. 참고로 여기서 Member는 엔티티 객체를 말한다. MEMBER 테이블이 아니다. JPQL은 데이터베이스를 전혀 알지 못한다.
-        TypedQuery<Member> query = entityManager.createQuery("select m from Member m", Member.class);
-        List<Member> members = query.getResultList();
+        TypedQuery<Member_Temp> query = entityManager.createQuery("select m from Member_Temp m", Member_Temp.class);
+        List<Member_Temp> memberTemps = query.getResultList();
 
         // 조회한 값 검증
-        assertThat(findMember.getId()).isEqualTo(id); // id 체크
-        assertThat(findMember.getUsername()).isEqualTo(userName); // userName 체크
-        assertThat(findMember.getAge()).isEqualTo(age); // age 체크
-        assertThat(members).hasSize(1); // 조회한 list size 체크
+        assertThat(findMemberTemp.getId()).isEqualTo(id); // id 체크
+        assertThat(findMemberTemp.getUsername()).isEqualTo(userName); // userName 체크
+        assertThat(findMemberTemp.getAge()).isEqualTo(age); // age 체크
+        assertThat(memberTemps).hasSize(1); // 조회한 list size 체크
     }
 
     @Test
     public void 테스트_롤백() {
-        Member findMember = testEntityManager.find(Member.class, "id1");
-        testEntityManager.remove(findMember);
+        // 실행코드는 없지만, ddl-auto create 값 덕분에 모든 테이블을 drop하고 create하여 초기화한다.
     }
 }

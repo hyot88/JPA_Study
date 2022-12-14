@@ -8,9 +8,9 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity(name = "Member")
-@Table(name = "MEMBER_TEMP", uniqueConstraints = {@UniqueConstraint(name = "NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})})
-public class Member {
+@Entity(name = "Member_Temp")
+@Table(name = "MEMBER_TEMP")
+public class Member_Temp {
 
     @Id
     @Column(name = "ID")
