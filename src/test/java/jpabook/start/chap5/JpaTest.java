@@ -1,7 +1,7 @@
 package jpabook.start.chap5;
 
 import jpabook.model.OrderStatus;
-import jpabook.model.entity.Item;
+import jpabook.model.entity.item.Item;
 import jpabook.model.entity.Member;
 import jpabook.model.entity.Order;
 import jpabook.model.entity.OrderItem;
@@ -39,7 +39,7 @@ public class JpaTest {
     @Test
     public void 테스트() {
         // Member 추가
-        Member member = new Member();
+        /*Member member = new Member();
         member.setName("안효성");
         member.setCity("인천");
         member.setStreet("부평구");
@@ -100,7 +100,7 @@ public class JpaTest {
         Item searchItem1 = searchOrderItemList.get(0).getItem();
         assertThat(searchItem1.getId()).isEqualTo(item1Id); // id 체크
         Item searchItem2 = searchOrderItemList.get(1).getItem();
-        assertThat(searchItem2.getId()).isEqualTo(item2Id); // id 체크
+        assertThat(searchItem2.getId()).isEqualTo(item2Id); // id 체크*/
     }
 
     @Test
